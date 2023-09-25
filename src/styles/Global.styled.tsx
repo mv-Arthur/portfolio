@@ -11,13 +11,27 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-    margin: 0;
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color:${theme.colors.font}
+        margin: 0;
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color:${theme.colors.font};
+        line-height: 1.2;
+        &::-webkit-scrollbar {
+            width: 3px;
+            background: transparent;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: ${theme.colors.primaryBg} 
+        }
+        &::-webkit-scrollbar-thumb {
+            width: 3px;
+            background-color: ${theme.colors.accent};
+            border-radius:10px ;
+            height: 30px;
+        }
     }
 
     a {
@@ -31,6 +45,10 @@ export const GlobalStyle = createGlobalStyle`
     button {
         background-color: unset;
         border:none 
+    }
+
+    section {
+        padding: 100px 0;
     }
 
     section:nth-of-type(2n+2) {
