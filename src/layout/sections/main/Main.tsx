@@ -2,18 +2,21 @@ import React from "react";
 import photo from "../../../assets/images/photo.jpg";
 import styled from "styled-components";
 import { FlexWrapper } from "../../../components/FlexWrapper";
+import { Container } from "../../../components/Container";
 export const Main = () => {
   return (
     <StyledMain>
-      <FlexWrapper align="center" justify="space-around">
-        <div>
-          <span>Hi There</span>
-          <Name>I am Malakhov Arthur</Name>
-          <MainTitle>A Web Developer. </MainTitle>
-        </div>
+      <Container>
+        <FlexWrapper align="center" justify="space-around">
+          <div>
+            <span>Hi There</span>
+            <Name>I am Malakhov Arthur</Name>
+            <MainTitle>A Web Developer. </MainTitle>
+          </div>
 
-        <Photo src={photo} alt="" />
-      </FlexWrapper>
+          <Photo src={photo} alt="" />
+        </FlexWrapper>
+      </Container>
     </StyledMain>
   );
 };
