@@ -28,7 +28,8 @@ const StyledSkill = styled.div`
   width: 380px;
   padding: 30px 20px 40px 20px;
 `;
-const IconWrapper = styled.div`
+export const IconWrapper = styled.div`
+  color: ${theme.colors.accent};
   position: relative;
   &::before {
     content: "";
@@ -45,16 +46,9 @@ const IconWrapper = styled.div`
 `;
 const SkillTitle = styled.h3`
   margin: 70px 0 15px 0;
-  font-family: "Josefin Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 1px;
   text-transform: uppercase;
 `;
 
-const SkillText = styled.span`
+const SkillText = styled.p`
   text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
 `;

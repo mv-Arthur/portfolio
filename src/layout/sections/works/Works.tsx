@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { SectionTitle } from "../../../components/SectionTitle";
-import { Menu } from "../../../components/menu/Menu";
+import { TabMenu } from "./tabMenu/TabMenu";
 import { Work } from "./Work";
 import socialNetwork from "../../../assets/images/social_network.png";
 import timer from "../../../assets/images/timer.png";
@@ -14,8 +14,8 @@ export const Works = () => {
     <StyledWorks>
       <Container>
         <SectionTitle>My Works</SectionTitle>
-        <Menu menuItems={workItems} />
-        <FlexWrapper>
+        <TabMenu menuItems={workItems} />
+        <FlexWrapper justify="space-between" align="flex-start">
           <Work
             image={socialNetwork}
             header={"Social Network"}
@@ -37,6 +37,4 @@ export const Works = () => {
   );
 };
 
-const StyledWorks = styled.section`
-  min-height: 100vh;
-`;
+const StyledWorks = styled.section``;
