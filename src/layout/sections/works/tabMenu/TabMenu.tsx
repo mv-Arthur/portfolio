@@ -18,10 +18,17 @@ export const TabMenu = (props: { menuItems: Array<string> }) => {
 const ListItem = styled.li``;
 
 const StyledTabMenu = styled.nav`
-  margin-bottom: 40px;
   ul {
+    margin: 0 auto 40px;
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: space-between;
+    max-width: 352px;
+    width: 100%;
+    ${Link} {
+      display: inline-block;
+      padding: 10px;
+      white-space: nowrap;
+    }
   }
 `;

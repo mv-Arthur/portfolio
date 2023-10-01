@@ -14,11 +14,11 @@ type WorkPropsType = {
 export const Work = (props: WorkPropsType) => {
   return (
     <StyledWork>
+      <ImageWrapper>
+        <Image src={props.image} alt="" />
+        <Button>view project</Button>
+      </ImageWrapper>
       <Description>
-        <ImageWrapper>
-          <Image src={props.image} alt="" />
-          <Button>view project</Button>
-        </ImageWrapper>
         <Header>{props.header}</Header>
         <Text>{props.text}</Text>
         <Link href="#">{props.firstLink || "demo"}</Link>
@@ -62,8 +62,14 @@ const ImageWrapper = styled.div`
 
 const StyledWork = styled.div`
   background-color: ${theme.colors.secondaryBg};
-  max-width: 540px;
-  width: 100%;
+  width: 330px;
+  flex-grow: 1;
+  @media ${theme.media.desktop} {
+    max-width: 540px;
+  }
+`;
+const Description = styled.div`
+  padding: 0 20px 34px 20px;
   ${Link} {
     padding: 10px 0;
 
@@ -71,9 +77,6 @@ const StyledWork = styled.div`
       margin-left: 20px;
     }
   }
-`;
-const Description = styled.div`
-  padding: 25px 20px;
 `;
 
 const Image = styled.img`
