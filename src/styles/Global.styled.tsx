@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
             sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        min-width: 360px;
         color:${theme.colors.font};
         line-height: 1.2;
         &::-webkit-scrollbar {
@@ -32,6 +33,7 @@ export const GlobalStyle = createGlobalStyle`
             border-radius:10px ;
             height: 30px;
         }
+       
     }
 
     a {
