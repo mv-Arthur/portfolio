@@ -10,7 +10,7 @@ type SkillPropsType = {
   skillIconId: string;
 };
 
-export const Skill = (props: SkillPropsType) => {
+export const Skill: React.FC<SkillPropsType> = (props: SkillPropsType) => {
   return (
     <StyledSkill>
       <FlexWrapper direction="column" justify="space-between" align="center">
