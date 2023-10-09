@@ -1,39 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { FlexWrapper } from "../FlexWrapper";
-import { theme } from "../../styles/theme";
-export const Slider = () => {
-  return (
-    <StyledSlider>
-      <FlexWrapper>
-        <Slide>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </Text>
-          <Name>@ivan ivanow</Name>
-        </Slide>
-      </FlexWrapper>
 
-      <PaginationStyled>
-        <span></span>
-        <span className="active"></span>
-        <span></span>
-      </PaginationStyled>
-    </StyledSlider>
-  );
-};
-
-const StyledSlider = styled.div`
-  max-width: 500px;
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
+import "../../styles/slider.css";
+const Slide = styled.div`
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
 
-const Slide = styled.div`
-  text-align: center;
+  &:hover {
+    cursor: grab;
+  }
 `;
 
 const Text = styled.p``;
@@ -49,20 +28,49 @@ const Name = styled.span`
   display: inline-block;
 `;
 
-const PaginationStyled = styled.div`
-  span {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
+const SlideFC: React.FC<{ text: string; name: string }> = (props: {
+  text: string;
+  name: string;
+}) => {
+  return (
+    <Slide>
+      <Text>{props.text}</Text>
+      <Name>@{props.name}</Name>
+    </Slide>
+  );
+};
 
-    background-color: rgb(255, 255, 255, 0.5);
-    border-radius: 20px;
-    & + span {
-      margin-left: 5px;
-    }
-    &.active {
-      background-color: ${theme.colors.accent};
-      width: 20px;
-    }
-  }
+const items = [
+  <SlideFC
+    text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum
+  dolor sit amet, consectetur adipisicing elit.2"
+    name="ivan ivanow"
+  />,
+  <SlideFC
+    text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum
+  dolor sit amet, consectetur adipisicing elit.2"
+    name="sergey petrov"
+  />,
+  <SlideFC
+    text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum
+  dolor sit amet, consectetur adipisicing elit.2"
+    name="alexander kopilov"
+  />,
+];
+
+export const Slider: React.FC = () => (
+  <StyledSlider>
+    <AliceCarousel mouseTracking items={items} />
+  </StyledSlider>
+);
+
+const StyledSlider = styled.div`
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

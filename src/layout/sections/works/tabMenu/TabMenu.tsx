@@ -1,15 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "../../../../components/Link";
-export const TabMenu: React.FC<{ menuItems: Array<string> }> = (props: {
-  menuItems: Array<string>;
-}) => {
+import { TabsItemsStatusType } from "../Works";
+
+type TabMenuPropsType = {
+  tabsItems: Array<{
+    title: string;
+    status: TabsItemsStatusType;
+  }>;
+  changeFilterStatus: (value: TabsItemsStatusType) => void;
+  currentFilterStatus: string;
+};
+
+export const TabMenu: React.FC<TabMenuPropsType> = (
+  props: TabMenuPropsType
+) => {
   return (
     <StyledTabMenu>
       <ul>
-        {props.menuItems.map((item, index) => (
+        {props.tabsItems.map((item, index) => (
           <ListItem key={index}>
-            <Link href="vk.com">{item}</Link>
+            <Link
+              active={props.currentFilterStatus === item.status}
+              as={"button"}
+              onClick={() => props.changeFilterStatus(item.status)}
+            >
+              {item.title}
+            </Link>
           </ListItem>
         ))}
       </ul>
@@ -27,6 +44,7 @@ const StyledTabMenu = styled.nav`
     justify-content: space-between;
     max-width: 352px;
     width: 100%;
+
     ${Link} {
       display: inline-block;
       padding: 10px;

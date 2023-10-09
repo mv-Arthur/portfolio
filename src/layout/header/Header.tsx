@@ -6,7 +6,15 @@ import { FlexWrapper } from "../../components/FlexWrapper";
 import { DesktopMenu } from "./headerMenu/DesktopMenu";
 import { MobileMenu } from "./headerMenu/MobileMenu";
 import { S } from "./headerMenu_Styles";
-const items = ["Home", "Skills", "Works", "Testimony", "Contact"];
+import { Link } from "react-scroll";
+
+const menuItems = [
+  { title: "Home", anchor: "home" },
+  { title: "Skills", anchor: "skills" },
+  { title: "Works", anchor: "works" },
+  { title: "Testimony", anchor: "testimony" },
+  { title: "Contact", anchor: "contact" },
+];
 
 export const Header: React.FC = () => {
   const [width, setWidth] = React.useState(window.innerWidth);
@@ -20,11 +28,13 @@ export const Header: React.FC = () => {
     <S.StyledHeader>
       <Container>
         <FlexWrapper justify="space-between" align="center">
-          <Logo />
+          <Link to={"home"} smooth={true}>
+            <Logo />
+          </Link>
           {width < breakpoint ? (
-            <MobileMenu menuItems={items} />
+            <MobileMenu menuItems={menuItems} />
           ) : (
-            <DesktopMenu menuItems={items} />
+            <DesktopMenu menuItems={menuItems} />
           )}
         </FlexWrapper>
       </Container>

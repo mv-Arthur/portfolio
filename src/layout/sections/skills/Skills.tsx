@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FlexWrapper } from "../../../components/FlexWrapper";
 import { SectionTitle } from "../../../components/SectionTitle";
 import { Skill } from "./Skill";
+import { Fade } from "react-awesome-reveal";
 import { Container } from "../../../components/Container";
 export const Skills: React.FC = () => {
   /* eslint-disable */
@@ -46,20 +47,22 @@ export const Skills: React.FC = () => {
   ]);
 
   return (
-    <StyledSkills>
+    <StyledSkills id="skills">
       <Container>
         <SectionTitle>My Skills</SectionTitle>
-        <FlexWrapper wrap={"wrap"} justify={"space-between"}>
-          {skills.map((el, index) => {
-            return (
-              <Skill
-                skillTitle={el.skillTitle}
-                skillText={el.skillText}
-                skillIconId={el.skillIconId}
-                key={index}
-              />
-            );
-          })}
+        <FlexWrapper wrap={"wrap"} justify={"space-around"}>
+          <Fade damping={0.1} cascade>
+            {skills.map((el, index) => {
+              return (
+                <Skill
+                  skillTitle={el.skillTitle}
+                  skillText={el.skillText}
+                  skillIconId={el.skillIconId}
+                  key={index}
+                />
+              );
+            })}
+          </Fade>
         </FlexWrapper>
       </Container>
     </StyledSkills>
@@ -67,5 +70,5 @@ export const Skills: React.FC = () => {
 };
 
 const StyledSkills = styled.section`
-  background-color: #ffe5e4;
+  position: relative;
 `;

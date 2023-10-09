@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {theme} from "../../styles/theme";
 import { css } from "styled-components";
+import { Link } from "react-scroll";
 const Mask = styled.span`
   position: absolute;
   top: 0;
@@ -10,7 +11,7 @@ const Mask = styled.span`
   overflow-y: hidden;
   /* outline: 1px solid red; */
   color: ${theme.colors.accent};
-
+  transition: ${theme.animation.transition};
   & + & {
     top: 50%;
     span {
@@ -20,17 +21,13 @@ const Mask = styled.span`
   }
 `;
 
-const Link = styled.a`
+const NavLink = styled(Link)`
   text-align: center;
   font-family: "Josefin Sans", sans-serif;
   font-size: 30px;
   font-weight: 400;
   color: transparent;
-`;
-
-const ListItem = styled.li`
-  position: relative;
-
+  
   &::before {
     content: "";
     display: inline-block;
@@ -43,9 +40,10 @@ const ListItem = styled.li`
     z-index: 1;
     transform: translateY(-50%);
     transform: scale(0);
+    transition: ${theme.animation.transition};
   }
 
-  &:hover {
+  &:hover, &.active {
     &::before {
       transform: scale(1);
     }
@@ -57,6 +55,16 @@ const ListItem = styled.li`
       }
     }
   }
+  &:hover {
+    cursor: pointer;
+  }
+  
+`;
+
+const ListItem = styled.li`
+  position: relative;
+
+
 `;
 
 const MobileMenuPopup = styled.div<{ isOpen: boolean }>`
@@ -67,14 +75,17 @@ const MobileMenuPopup = styled.div<{ isOpen: boolean }>`
   bottom: 0;
   z-index: 99999;
   background-color: rgba(31, 31, 32, 0.9);
-  display: none;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-100%);
+  transition: ${theme.animation.transition};
   ${(props) =>
     props.isOpen &&
     css<{ isOpen: boolean }>`
-      display: flex;
-      justify-content: center;
-      align-items: center;
+     
+      transform: translateX(0%);
+      
     `}
 `;
 
@@ -85,6 +96,7 @@ const BurgerButton = styled.button<{ isOpen: boolean }>`
   width: 200px;
   height: 200px;
   z-index: 99999999;
+ 
   span {
     display: block;
     width: 36px;
@@ -93,6 +105,7 @@ const BurgerButton = styled.button<{ isOpen: boolean }>`
     position: absolute;
     left: 40px;
     bottom: 50px;
+  
     ${(props) =>
       props.isOpen &&
       css<{ isOpen: boolean }>`
@@ -107,6 +120,7 @@ const BurgerButton = styled.button<{ isOpen: boolean }>`
       background-color: ${theme.colors.font};
       position: absolute;
       transform: translateY(-10px);
+      transition: ${theme.animation.transition};
       ${(props) =>
         props.isOpen &&
         css<{ isOpen: boolean }>`
@@ -122,6 +136,7 @@ const BurgerButton = styled.button<{ isOpen: boolean }>`
       background-color: ${theme.colors.font};
       position: absolute;
       transform: translateY(10px);
+      transition: ${theme.animation.transition};
       ${(props) =>
         props.isOpen &&
         css<{ isOpen: boolean }>`
@@ -163,7 +178,7 @@ const StyledHeader = styled.header`
 `;
 
 export const S = {
-    Link,
+  NavLink,
     Mask,
     ListItem,
     MobileMenuPopup,

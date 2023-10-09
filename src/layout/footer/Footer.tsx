@@ -60,6 +60,7 @@ export const Footer = () => {
 const StyledFooter = styled.footer`
   background-color: ${theme.colors.primaryBg};
   padding: 40px 0;
+  position: relative;
 `;
 
 const Name = styled.h4`
@@ -89,6 +90,7 @@ const SocialLink = styled.a`
   justify-content: center;
   color: ${theme.colors.accent};
   cursor: pointer;
+  transition: ${theme.animation.transition};
   &:hover {
     color: ${theme.colors.primaryBg};
     background: ${theme.colors.accent};

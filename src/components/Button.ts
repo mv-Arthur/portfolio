@@ -18,6 +18,7 @@ export const Button = styled.button`
   }
 
   &::before {
+    transition: ${theme.animation.transition};
     content: "";
     display: inline-block;
     width: 50%;

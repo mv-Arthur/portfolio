@@ -41,6 +41,7 @@ const ImageWrapper = styled.div`
   }
 
   &::before {
+    transition: ${theme.animation.transition};
     content: "";
     position: absolute;
     left: 0;
@@ -53,6 +54,7 @@ const ImageWrapper = styled.div`
   }
 
   ${Button} {
+    transition: ${theme.animation.transition};
     opacity: 0;
     position: absolute;
     left: 50%;
@@ -76,11 +78,10 @@ const ImageWrapper = styled.div`
 
 const StyledWork = styled.div`
   background-color: ${theme.colors.secondaryBg};
-  width: 330px;
-  flex-grow: 1;
-  @media ${theme.media.desktop} {
+
+  /* @media ${theme.media.desktop} {
     max-width: 540px;
-  }
+  } */
 `;
 const Description = styled.div`
   padding: 0 20px 34px 20px;

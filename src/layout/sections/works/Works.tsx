@@ -7,32 +7,89 @@ import socialNetwork from "../../../assets/images/social_network.png";
 import timer from "../../../assets/images/timer.png";
 import { FlexWrapper } from "../../../components/FlexWrapper";
 import { Container } from "../../../components/Container";
-const workItems = ["All", "landing page", "React", "spa"];
+import { motion, AnimatePresence } from "framer-motion";
+
+export type TabsItemsStatusType = "all" | "landing" | "react" | "spa";
+
+const tabsItems: Array<{
+  title: string;
+  status: TabsItemsStatusType;
+}> = [
+  { title: "All", status: "all" },
+  { title: "landing page", status: "landing" },
+  { title: "React", status: "react" },
+  { title: "spa", status: "spa" },
+];
+
+const worksData = [
+  {
+    image: socialNetwork,
+    header: "Social Network",
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+    type: "spa",
+    id: 1,
+  },
+  {
+    image: timer,
+    header: "Timer",
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit  ut labore et dolore magna aliqua Ut enim",
+    type: "react",
+    id: 2,
+  },
+];
 
 export const Works: React.FC = () => {
-  /*eslint-disable*/
-  const [works, setWorks] = React.useState([
-    {
-      image: socialNetwork,
-      header: "Social Network",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-    },
-    {
-      image: timer,
-      header: "Timer",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit  ut labore et dolore magna aliqua Ut enim",
-    },
-  ]);
+  const [currentFilterStatus, setCurrentFilterStatus] = React.useState("all");
+  let filteredWorks = worksData;
+
+  if (currentFilterStatus === "landing") {
+    filteredWorks = worksData.filter((wD) => wD.type === "landing");
+  }
+
+  if (currentFilterStatus === "react") {
+    filteredWorks = worksData.filter((wD) => wD.type === "react");
+  }
+
+  if (currentFilterStatus === "spa") {
+    filteredWorks = worksData.filter((wD) => wD.type === "spa");
+  }
+
+  function changeFilterStatus(value: "all" | "landing" | "react" | "spa") {
+    setCurrentFilterStatus(value);
+  }
 
   return (
-    <StyledWorks>
+    <StyledWorks id="works">
       <Container>
         <SectionTitle>My Works</SectionTitle>
-        <TabMenu menuItems={workItems} />
+
+        <TabMenu
+          changeFilterStatus={changeFilterStatus}
+          tabsItems={tabsItems}
+          currentFilterStatus={currentFilterStatus}
+        />
         <FlexWrapper justify="space-between" align="flex-start" wrap="wrap">
-          {works.map((el) => {
-            return <Work image={el.image} header={el.header} text={el.text} />;
-          })}
+          <AnimatePresence>
+            {filteredWorks.map((el) => {
+              return (
+                <motion.div
+                  style={{ width: "400px", flexGrow: 1, maxWidth: "540px" }}
+                  layout
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  key={el.id}
+                >
+                  <Work
+                    image={el.image}
+                    header={el.header}
+                    text={el.text}
+                    key={el.id}
+                  />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </FlexWrapper>
       </Container>
     </StyledWorks>
@@ -40,6 +97,7 @@ export const Works: React.FC = () => {
 };
 
 const StyledWorks = styled.section`
+  position: relative;
   ${FlexWrapper} {
     gap: 30px;
   }
